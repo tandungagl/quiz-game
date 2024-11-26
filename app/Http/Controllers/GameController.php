@@ -23,11 +23,9 @@ class GameController extends Controller
 
     public function submitName(EntryNameRequest $request)
     {
-        // Luc: Tạo user hoặc lưu tạm trong session
         $user = $this->userRepository->create(['name' => $request->player_name]);
         session(['user_id' => $user->id]);
 
-        // Luc: Lấy 5 câu hỏi ngẫu nhiên
         $questions = $this->questionRepository->getRandomQuestion();
         session(['questions' => $questions, 'current_index' => 0]);
 
@@ -52,13 +50,11 @@ class GameController extends Controller
         $questionId = $request->question_id;
         $selectedOption = $request->answer;
 
-        // Luc: Lưu câu trả lời
         $this->userAnswerRepository->updateOrCreate(
             ['user_id' => $userId, 'question_id' => $questionId],
             ['answer' => $selectedOption]
         );
 
-        // Luc: Chuyển câu hỏi
         $questions = session('questions');
         $currentIndex = $request->current_index;
 
@@ -77,7 +73,6 @@ class GameController extends Controller
         $questions = session('questions');
         $answers = $this->userAnswerRepository->getUserAnswer($userId);
 
-        // Luc: Tính điểm
         $score = 0;
         foreach ($questions as $question) {
             $userAnswer = $answers->firstWhere('question_id', $question->id);
@@ -87,7 +82,6 @@ class GameController extends Controller
         }
         $this->userRepository->update($userId, ['score'=> $score]);
 
-        // Luc: Xóa session sau khi xong 1 phiên
         session()->flush();
 
         return view('result', compact('score'));

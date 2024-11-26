@@ -14,14 +14,14 @@ class CreateQuestionsTable extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
-            $table->id(); // Primary key
-            $table->text('question'); // Nội dung câu hỏi
-            $table->string('option_a'); // Lựa chọn A
-            $table->string('option_b'); // Lựa chọn B
-            $table->string('option_c'); // Lựa chọn C
-            $table->string('option_d'); // Lựa chọn D
-            $table->char('correct_option', 1); // Đáp án đúng (A, B, C, D)
-            $table->timestamps(); // Thời gian tạo và cập nhật
+            $table->id();
+            $table->text('question');
+            $table->string('option_a');
+            $table->string('option_b');
+            $table->string('option_c');
+            $table->string('option_d');
+            $table->char('correct_option', 1);
+            $table->timestamps();
         });
     }
 

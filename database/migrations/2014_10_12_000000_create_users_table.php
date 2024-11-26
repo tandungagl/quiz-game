@@ -14,10 +14,10 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id(); // Primary key
-            $table->string('name'); // Tên người dùng
-            $table->integer('score')->default(0); // Điểm số
-            $table->timestamps(); // Thời gian tạo và cập nhật
+            $table->id();
+            $table->string('name');
+            $table->integer('score')->default(0);
+            $table->timestamps();
         });
     }
 

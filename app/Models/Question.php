@@ -9,10 +9,8 @@ class Question extends Model
 {
     use HasFactory;
 
-    // Tên bảng trong database (nếu tên bảng không tuân theo quy tắc số nhiều của Laravel)
     protected $table = 'questions';
 
-    // Các cột có thể gán giá trị hàng loạt
     protected $fillable = [
         'question',
         'option_a',
@@ -22,7 +20,6 @@ class Question extends Model
         'correct_option',
     ];
 
-    // Quan hệ với model UserAnswer
     public function userAnswers()
     {
         return $this->hasMany(UserAnswer::class, 'question_id');

@@ -14,13 +14,12 @@ class CreateUserAnswersTable extends Migration
     public function up()
     {
         Schema::create('user_answers', function (Blueprint $table) {
-            $table->id(); // Primary key
-            $table->unsignedBigInteger('user_id'); // Liên kết với bảng users
-            $table->unsignedBigInteger('question_id'); // Liên kết với bảng questions
-            $table->char('answer', 1)->nullable(); // Đáp án chọn của người dùng
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('question_id');
+            $table->char('answer', 1)->nullable();
             $table->timestamps();
 
-            // Foreign key constraints
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
         });

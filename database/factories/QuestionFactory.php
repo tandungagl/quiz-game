@@ -10,12 +10,12 @@ class QuestionFactory extends Factory
     {
 
         return [
-            'question' => $this->faker->sentence(10), // Câu hỏi giả
+            'question' => $this->faker->sentence(10),
             'option_a' => $this->faker->sentence(3),
             'option_b' => $this->faker->sentence(3),
             'option_c' => $this->faker->sentence(3),
             'option_d' => $this->faker->sentence(3),
-            'correct_option' => $this->faker->randomElement([1,2,3,4]), // Đáp án đúng ngẫu nhiên
+            'correct_option' => $this->faker->randomElement([1,2,3,4]),
         ];
     }
 }

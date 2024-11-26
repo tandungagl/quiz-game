@@ -14,12 +14,11 @@ class QuestionRepository extends BaseRepository implements QuestionRepositoryInt
     }
 
     /**
-     * Get 5 questions hot in a month the last
+     * Summary of getRandomQuestion
      * @return mixed
      */
     public function getRandomQuestion()
     {
-        // Code
         return $this->model->inRandomOrder()->take(5)->get();
     }
 }
