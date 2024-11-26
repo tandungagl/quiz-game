@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Question\QuestionRepositoryInterface;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
-    public function startQuizPage(){
-        return 'startQuizPage';
+
+    public function __construct(
+        protected QuestionRepositoryInterface $questionRepository)
+    {
     }
-    public function adminQuestionManager(){
-        return 'adminQuestionManager';
-    }
-    public function adminQuestionList(){
-        return 'adminQuestionList';
+
+    public function startQuizPage(Request $request){
+        $randomQuestion = $this->questionRepository->getRandomQuestion();
+        return view("quizPage", $randomQuestion);
     }
 }
